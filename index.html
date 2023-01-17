@@ -29,10 +29,17 @@
     <div class="city"><img src="city.png" alt="" /></div>
     <img src="moon.png" alt="" id="moon" style="visibility: hidden" />
     <div style="display: none">
+      <!-- 同学 -->
       <div class="shape">新年快乐</div>
       <div class="shape">身体健康</div>
       <div class="shape">虎年大吉</div>
       <div class="shape">生意兴隆</div>
+      <div class="shape">祝 罗罗宇</div>
+      <div class="shape">祝 罗罗宇</div>
+      <div class="shape">祝 罗罗宇</div>
+      <div class="shape">家庭和睦</div>
+      <div class="shape">好运连连</div>
+      <div class="shape">好运连连</div>
     </div>
     <audio src="boom.mp3" preload="auto"></audio>
     <audio src="boom.mp3" preload="auto"></audio>
@@ -64,22 +71,24 @@
         lastTime = new Date();
         animate();
       }
-
+      //烟花设置
       var lastTime;
       function animate() {
         ctx.save();
         ctx.globalCompositeOperation = "destination-out";
-        ctx.globalAlpha = 0.3; //设置透明的
+        ctx.globalAlpha = 0.08; //设置尾焰长度
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.restore();
 
         var newTime = new Date();
-        if (newTime - lastTime > 200 + (window.innerHeight - 767) / 1) {
-          var random = Math.random() * 100 > 50 ? true : false; //设置文字出现频率
+        if (newTime - lastTime > 100 + (window.innerHeight - 767) / 30) {
+          //设置烟花出现
+          var random = Math.random() * 100 > 40 ? true : false; //设置文字出现频率
           //设置烟花爆炸范围
           var x = getRandom(canvas.width / 5, (canvas.width * 4) / 5);
           var y = getRandom(100, 500);
           if (random) {
+            //设置烟花爆炸
             var bigboom = new Boom(
               getRandom(canvas.width / 3, (canvas.width * 2) / 3),
               2,
@@ -88,6 +97,7 @@
             );
             bigbooms.push(bigboom);
           } else {
+            //烟花炸出字
             var bigboom = new Boom(
               getRandom(canvas.width / 3, (canvas.width * 2) / 3),
               2,
@@ -333,7 +343,9 @@
           //字体设置
           var text = ele.innerHTML;
           context.save();
-          var fontSize = parseInt(getRandom(500, 300));
+          var fontSize = parseInt(
+            getRandom(canvas.width / 7, canvas.width / 4)
+          );
           context.font = fontSize + "px 宋体 bold";
           context.textAlign = "center";
           context.textBaseline = "middle";
